@@ -1,10 +1,15 @@
-import React from 'react'
+import MesssageList from "./MesssageList"
+import ChatInput from "./ChatInput"
 
 const Home = () => {
   return (
-    <div>
-        <h1>Welcome to thte MESSAGENER</h1>
-    </div>
+    <main>
+      {/* Message List  */}
+      <MesssageList/>
+      {/* Chat Component */}
+      <ChatInput/>
+      
+    </main>
   )
 }
 
