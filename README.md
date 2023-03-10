@@ -28,5 +28,22 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 
 
+## Redis 
 Please Keep in mind 
 - When setup redis url don't forgot to put 'rediss' in env
+
+## SWR
+
+* 
+  const { data, error, mutate } = useSWR("/api/getMessages", fetcher);
+
+  - 
+ in here what value you put on first argument it does not a meter it just a key to get that message data from cache you can put any instead of 'api/getMessages'
+
+* 
+await mutate(uploadMessageToUpstash, {
+      optimisticData: [message, ...messages!],
+      rollbackOnError: true,
+    });
+
+-  this is a function for get from cache file in swr you add function what will same as optimistic data then only you can get data from cache

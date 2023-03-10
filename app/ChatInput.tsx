@@ -2,12 +2,19 @@
 
 import { FormEvent, useState } from "react";
 import { v4 as uuid } from "uuid";
+import useSWR from "swr";
+
 import { Message } from "../typings";
+import fetcher from "../utils/fetchMessages";
 
 const ChatInput = () => {
   const [input, setInput] = useState("");
 
-  const addMessage = (e: FormEvent<HTMLFormElement>) => {
+  // in here what value you put on first argument it does not a meter it just a key to get that message data from cache
+  const { data: messages, error, mutate } = useSWR("/api/getMessages", fetcher);
+  console.log("🚀 ~ file: ChatInput.tsx:14 ~ ChatInput ~ data:", messages);
+
+  const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input) return;
     const messageToSend = input;
@@ -38,13 +45,15 @@ const ChatInput = () => {
       });
 
       const data = await res.json();
-      console.log(
-        "🚀 ~ file: ChatInput.tsx:41 ~ uploadMessageToUpstash ~ data:",
-        data
-      );
+
+      return [data.message, ...messages!];
     };
 
-    uploadMessageToUpstash();
+    // this is a function for get from cache file in swr you add function what will same as optimistic data then only you can get data from cache
+    await mutate(uploadMessageToUpstash, {
+      optimisticData: [message, ...messages!],
+      rollbackOnError: true,
+    });
   };
 
   return (
