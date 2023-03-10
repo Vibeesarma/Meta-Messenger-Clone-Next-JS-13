@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { v4 as uuid } from "uuid";
+import { Message } from "../typings";
 
 const ChatInput = () => {
   const [input, setInput] = useState("");
@@ -9,7 +11,40 @@ const ChatInput = () => {
     e.preventDefault();
     if (!input) return;
     const messageToSend = input;
-    setInput('')
+    setInput("");
+
+    // this is generate id for you uuid
+    const id = uuid();
+
+    const message: Message = {
+      id,
+      message: messageToSend,
+      created_at: Date.now(),
+      username: "Vibee Sarma",
+      profilePic:
+        "https://images.unsplash.com/photo-1628563694622-5a76957fd09c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80",
+      email: "person1@gmail.com",
+    };
+
+    const uploadMessageToUpstash = async () => {
+      const res = await fetch("/api/addMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message,
+        }),
+      });
+
+      const data = await res.json();
+      console.log(
+        "🚀 ~ file: ChatInput.tsx:41 ~ uploadMessageToUpstash ~ data:",
+        data
+      );
+    };
+
+    uploadMessageToUpstash();
   };
 
   return (
