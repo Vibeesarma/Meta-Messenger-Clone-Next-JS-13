@@ -76,3 +76,7 @@ export const clientPusher = new ClientPusher( 'client key', {
 });
 
 - in the above case you want another one more dependency 'npm i encoding'
+
+
+## Next-Auth 
+* you want to install next auth ,then add facebook app secret id and key to get access from meta

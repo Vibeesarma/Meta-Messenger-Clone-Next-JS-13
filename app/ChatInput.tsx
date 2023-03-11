@@ -6,8 +6,13 @@ import useSWR from "swr";
 
 import { Message } from "../typings";
 import fetcher from "../utils/fetchMessages";
+import { getServerSession } from "next-auth";
 
-const ChatInput = () => {
+type Props = {
+  session: Awaited<ReturnType<typeof getServerSession>>;
+};
+
+const ChatInput = ({ session }: Props) => {
   const [input, setInput] = useState("");
 
   // in here what value you put on first argument it does not a meter it just a key to get that message data from cache
@@ -15,7 +20,7 @@ const ChatInput = () => {
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input) return;
+    if (!input || !session) return;
     const messageToSend = input;
     setInput("");
 
@@ -26,10 +31,9 @@ const ChatInput = () => {
       id,
       message: messageToSend,
       created_at: Date.now(),
-      username: "Vibee Sarma",
-      profilePic:
-        "https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg",
-      email: "person1@gmail.com",
+      username: session?.user?.name!,
+      profilePic: session?.user?.image!,
+      email: session?.user?.email!,
     };
 
     const uploadMessageToUpstash = async () => {
@@ -62,6 +66,7 @@ const ChatInput = () => {
     >
       <input
         value={input}
+        disabled={!session}
         onChange={(e) => setInput(e.target.value)}
         type="text"
         placeholder="Enter message here..."
