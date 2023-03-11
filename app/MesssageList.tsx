@@ -8,7 +8,11 @@ import { Message } from "../typings";
 import fetcher from "../utils/fetchMessages";
 import MessageComponent from "./MessageComponent";
 
-const MesssageList = () => {
+type Props = {
+  initialMessages: Message[];
+};
+
+const MesssageList = ({ initialMessages }: Props) => {
   const {
     data: messages,
     error,
@@ -33,20 +37,16 @@ const MesssageList = () => {
       }
     });
 
-
     // this is must want other wise it's contiously subscribe
-    return()=>{
-      channel.unbind_all()
-      channel.unsubscribe()
-    }
-
-
-
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
   }, [messages, mutate, clientPusher]);
 
   return (
     <div className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
-      {messages?.map((message) => (
+      {(messages || initialMessages).map((message) => (
         <MessageComponent key={message.id} message={message} />
       ))}
     </div>
