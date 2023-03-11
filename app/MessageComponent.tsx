@@ -6,10 +6,12 @@ type Props = {
 };
 
 const MessageComponent = ({ message }: Props) => {
+  const isUser = false;
+
   return (
-    <div className="flex  w-fit">
+    <div className={`flex w-fit ${isUser&&"ml-auto"}`}>
       {/* flex shrink help me to newer shrink the image */}
-      <div className="flex-shrink-0">
+      <div className={`flex-shrink-0 ${isUser&&"order-2"}`}>
         <Image
           src={message.profilePic}
           width={50}
@@ -19,13 +21,14 @@ const MessageComponent = ({ message }: Props) => {
         />
       </div>
       <div>
-        <p className=" text-[0.65rem] px-[2px] pb-[2px] text-red-400">{message.username}</p>
+        <p className={`text-[0.65rem] px-[2px] pb-[2px] ${isUser?"text-blue-400 text-right":"text-red-400 text-left"}`}>
+          {message.username}
+        </p>
         <div className=" flex items-end">
-          <div className=" px-3 py-2 rounded-lg w-fit text-white bg-red-400">
+          <div className={`px-3 py-2 rounded-lg w-fit text-white ${isUser?"bg-blue-400 order-2 ml-auto":"bg-red-400"}`}>
             <p>{message.message}</p>
           </div>
-          <p className="text-[0.65rem] italic px-2 text-gray-300">
-            {" "}
+          <p className={`text-[0.65rem] italic px-2 text-gray-300 ${isUser&&"text-right"}`}>
             {new Date(message.created_at).toLocaleDateString()}
           </p>
         </div>

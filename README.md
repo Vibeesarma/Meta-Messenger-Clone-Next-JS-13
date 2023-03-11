@@ -47,3 +47,28 @@ await mutate(uploadMessageToUpstash, {
     });
 
 -  this is a function for get from cache file in swr you add function what will same as optimistic data then only you can get data from cache
+
+
+## Pusher
+
+* this is server side for push message to client side
+
+- in server side you want install 'npm i pusher'
+
+export const serverPusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID!,
+  key: process.env.PUSHER_KEY!,
+  secret: process.env.PUSHER_SECRET_KEY!,
+  cluster: "ap2",
+  useTLS: true,
+});
+
+* this is a client side subscription for get message from others much quick
+- in here you want to install 'npm i pusher-js'
+
+export const clientPusher = new ClientPusher( 'client key', {
+  cluster: "ap2",
+  forceTLS: true,
+});
+
+- in the above case you want another one more dependency 'npm i encoding'
