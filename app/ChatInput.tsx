@@ -12,7 +12,6 @@ const ChatInput = () => {
 
   // in here what value you put on first argument it does not a meter it just a key to get that message data from cache
   const { data: messages, error, mutate } = useSWR("/api/getMessages", fetcher);
-  console.log("🚀 ~ file: ChatInput.tsx:14 ~ ChatInput ~ data:", messages);
 
   const addMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ const ChatInput = () => {
       created_at: Date.now(),
       username: "Vibee Sarma",
       profilePic:
-        "https://images.unsplash.com/photo-1628563694622-5a76957fd09c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80",
+        "https://i.pinimg.com/736x/0a/53/c3/0a53c3bbe2f56a1ddac34ea04a26be98.jpg",
       email: "person1@gmail.com",
     };
 
@@ -59,7 +58,7 @@ const ChatInput = () => {
   return (
     <form
       onSubmit={addMessage}
-      className="fixed bottom-0 z-50 w-full flex space-x-2 py-5 px-10 border-t border-gray-100"
+      className="fixed bottom-0 z-50 w-full flex space-x-2 py-5 px-10 border-t border-gray-100 bg-white"
     >
       <input
         value={input}
