@@ -28,6 +28,10 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 
 
+## Next JS 
+- Loading page is automatically added for server side renders 
+
+
 ## Redis 
 Please Keep in mind 
 - When setup redis url don't forgot to put 'rediss' in env

@@ -12,7 +12,7 @@ type Props = {
   initialMessages: Message[];
 };
 
-const MesssageList = ({ initialMessages }: Props) => {
+const MesssageList = ({initialMessages}: Props) => {
   const {
     data: messages,
     error,
