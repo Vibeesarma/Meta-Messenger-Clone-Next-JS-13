@@ -35,6 +35,7 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 ## Redis 
 Please Keep in mind 
 - When setup redis url don't forgot to put 'rediss' in env
+- for get this we use upstash ,it will provide this serverless redis 
 
 ## SWR
 
@@ -81,8 +82,18 @@ export const clientPusher = new ClientPusher( 'client key', {
 ## Next-Auth 
 * you want to install next auth ,then add facebook app secret id and key to get access from meta
   - each time you tried session from next auth it give you the user profile data for you
+### middle ware 
+- next auth have middle ware that help to prevent other route without login to access
+
+export { default } from "next-auth/middleware";
+export const config = { matcher: ["/"] };
+
+- it's default file in root directory you just create a middleware.ts file and paste this code it will automatically work in Next js 
+
+
 
 ## React-Timergo
 
 - npm react-timeago use instead of Date (if type is required add this file yarn add -D @types/react-timeago)
 - this component help you to show like 4 sec ago ,5 hours ago like things default 
+
