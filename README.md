@@ -4,8 +4,7 @@
 
 >Project Link [Let’s build META Messenger 2.0 with Next.js 13 (Upstash, TypeScript, Redis, Tailwind, NextAuth)](https://www.youtube.com/live/T2jKJF4BZOY?feature=share)
  
-* Loading page is automatically added for server side renders
-In here used the [Next.js 13](https://nextjs.org/blog/next-13)  some of the features,
+* Loading page is automatically added for server-side renders In here used the [Next.js 13](https://nextjs.org/blog/next-13)  some of the features,
     - Server component
     - client component 
     - page component
@@ -20,8 +19,8 @@ Please Keep in mind,
 
 ## SWR
 
-* [SWR](https://swr.vercel.app/) is help you get data first from cache then send the fetch request and come with up to date data.
-* In here what value you put on the first argument it does not a meter it just a key to get that message data from the cache you can put any instead of ```'api/getMessages'```
+* [SWR](https://swr.vercel.app/) helps you get data first from a cache then send the fetch request and come with up to date data.
+* In here what value you put on the first argument it does not a meter it is just a key to get that message data from the cache you can put any instead of ```'api/getMessages'```
 
 ```typescript
 const { data, error, mutate } = useSWR("/api/getMessages", fetcher);
@@ -38,7 +37,7 @@ await mutate(uploadMessageToUpstash, {
 
 
 ## Pusher
-* [Pusher](https://pusher.com/) is help to pushing messages from server side to client-side
+* [Pusher](https://pusher.com/) is help to push messages from the server side to client-side
 On the server side you want to install ```npm i pusher ```
 
 ```typescript
@@ -52,7 +51,7 @@ export const serverPusher = new Pusher({
 ```
 
 
-* this is a client-side subscription for getting message from others much quickly
+* this is a client-side subscription for getting messages from others much more quickly
 - here you want to install ```npm i pusher-js```
 
 ```typescript
