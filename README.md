@@ -1,4 +1,8 @@
 # Meta Messenger Clone in  Next.js 13
+
+>This project get from [Sonny Sangha](https://www.youtube.com/@SonnySangha) YouTube channel
+
+>Project Link [Let’s build META Messenger 2.0 with Next.js 13 (Upstash, TypeScript, Redis, Tailwind, NextAuth)](https://www.youtube.com/live/T2jKJF4BZOY?feature=share)
  
 * Loading page is automatically added for server side renders
 In here used the [Next.js 13](https://nextjs.org/blog/next-13)  some of the features,
