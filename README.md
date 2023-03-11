@@ -29,13 +29,19 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 
 ## Next JS 
-- Loading page is automatically added for server side renders 
-
+- Loading page is automatically added for server side renders
+it used the next js 13 features
+  - Server component
+  - client component 
+  - page component
+  - layout 
+  - header component 
+  - also used the default header meta field
 
 ## Redis 
 Please Keep in mind 
-- When setup redis url don't forgot to put 'rediss' in env
-- for get this we use upstash ,it will provide this serverless redis 
+- When setup Redis url don't forgot to put 'rediss' in env
+To get this we use upstash, which will provide this serverless Redis 
 
 ## SWR
 
@@ -43,7 +49,7 @@ Please Keep in mind
   const { data, error, mutate } = useSWR("/api/getMessages", fetcher);
 
   - 
- in here what value you put on first argument it does not a meter it just a key to get that message data from cache you can put any instead of 'api/getMessages'
+ in here what value you put on the first argument it does not a meter it just a key to get that message data from the cache you can put any instead of 'api/getMessages'
 
 * 
 await mutate(uploadMessageToUpstash, {
@@ -51,14 +57,12 @@ await mutate(uploadMessageToUpstash, {
       rollbackOnError: true,
     });
 
--  this is a function for get from cache file in swr you add function what will same as optimistic data then only you can get data from cache
+-  this is a function for getting from cache file in SWR you add a function that will same as optimistic data then only you can get data from a cache
 
 
 ## Pusher
-
-* this is server side for push message to client side
-
-- in server side you want install 'npm i pusher'
+this is the server side for pushing messages to client-side
+On the server side you want to install 'npm i pusher'
 
 export const serverPusher = new Pusher({
   appId: process.env.PUSHER_APP_ID!,
@@ -68,32 +72,34 @@ export const serverPusher = new Pusher({
   useTLS: true,
 });
 
-* this is a client side subscription for get message from others much quick
-- in here you want to install 'npm i pusher-js'
+* this is a client-side subscription for getting message from others much quickly
+- here you want to install 'npm i pusher-js'
 
 export const clientPusher = new ClientPusher( 'client key', {
   cluster: "ap2",
   forceTLS: true,
 });
 
-- in the above case you want another one more dependency 'npm i encoding'
+- in the above case, you want another one more dependency 'npm i encoding'
 
 
 ## Next-Auth 
-* you want to install next auth ,then add facebook app secret id and key to get access from meta
-  - each time you tried session from next auth it give you the user profile data for you
-### middle ware 
-- next auth have middle ware that help to prevent other route without login to access
+* you want to install the next auth, then add Facebook app secret id and key to getting access from meta
+  - each time you tried a session from the next auth it gives you the user profile data for you
+
+### middleware 
+
+- next auth has middleware that helps to prevent another route without login to access
 
 export { default } from "next-auth/middleware";
 export const config = { matcher: ["/"] };
 
-- it's default file in root directory you just create a middleware.ts file and paste this code it will automatically work in Next js 
+-it's the default file in the root directory you just create a middleware.ts file and paste this code it will automatically work in Next js 
 
 
 
 ## React-Timergo
 
-- npm react-timeago use instead of Date (if type is required add this file yarn add -D @types/react-timeago)
-- this component help you to show like 4 sec ago ,5 hours ago like things default 
+- npm react-timeago use instead of Date (if the type is required add this file yarn add -D @types/react-timeago)
+- this component helps you to show like 4 sec ago,5 hours ago as things default 
 
