@@ -80,3 +80,9 @@ export const clientPusher = new ClientPusher( 'client key', {
 
 ## Next-Auth 
 * you want to install next auth ,then add facebook app secret id and key to get access from meta
+  - each time you tried session from next auth it give you the user profile data for you
+
+## React-Timergo
+
+- npm react-timeago use instead of Date (if type is required add this file yarn add -D @types/react-timeago)
+- this component help you to show like 4 sec ago ,5 hours ago like things default 
